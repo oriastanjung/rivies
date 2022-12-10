@@ -7,6 +7,8 @@ function Card(props) {
       style={{
         backgroundImage: `url('https://image.tmdb.org/t/p/w500${props.img}')`,
       }}
+      // onClick={() => props.onClick(props.movie)}
+      onClick={props.onClick}
     >
       {/* {console.log(
         `url('https://image.tmdb.org/t/p/w500${props.img}') with title >> ${props.title}`

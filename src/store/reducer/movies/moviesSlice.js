@@ -5,7 +5,7 @@ import axios from "axios";
 const initialState = {
   latest: [],
   popular: [],
-  searched: [],
+  searched: "",
 };
 const thisDay = new Date();
 const API_URL = `https://api.themoviedb.org/3`;
@@ -16,7 +16,7 @@ const urlLatestMovies = `/discover/movie?primary_release_date.gte=${thisDay.getF
 }-${thisDay.getDate()}&api_key=${apiKey}`;
 
 const urlPopularMovies = `/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`;
-const urlSearchMovies = `/search/movie/?${apiKey}`;
+const urlSearchMovies = `/search/movie/?api_key=${apiKey}`;
 
 export const fetchLatest = createAsyncThunk("/movies/fetchLatest", async () => {
   try {
@@ -40,6 +40,7 @@ export const fetchPopular = createAsyncThunk(
     }
   }
 );
+
 export const fetchBySearch = createAsyncThunk(
   "/movies/fetchBySearch",
   async (query) => {
@@ -64,10 +65,12 @@ const moviesSlice = createSlice({
     builder.addCase(fetchLatest.fulfilled, (state, action) => {
       //   console.log("data >> ", action.payload);
       state.latest = action.payload;
+      state.searched = initialState.searched;
     });
     builder.addCase(fetchPopular.fulfilled, (state, action) => {
       //   console.log("data >> ", action.payload);
       state.popular = action.payload;
+      state.searched = initialState.searched;
     });
     builder.addCase(fetchBySearch.fulfilled, (state, action) => {
       //   console.log("data >> ", action.payload);

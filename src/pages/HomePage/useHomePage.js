@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   fetchLatest,
   fetchPopular,
+  fetchBySearch,
 } from "../../store/reducer/movies/moviesSlice";
 function useHomePage() {
   const dispatch = useDispatch();
-  const { latest, popular } = useSelector((state) => state.movies);
+  const { latest, popular, searched } = useSelector((state) => state.movies);
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedMovie, setSelectedMovie] = useState({});
+
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -15,12 +18,29 @@ function useHomePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("search >> ", searchQuery);
+    dispatch(fetchBySearch(searchQuery));
   };
   useEffect(() => {
-    dispatch(fetchLatest());
-    dispatch(fetchPopular());
-  }, []);
-  return { latest, popular, searchQuery, handleChange, handleSubmit };
+    if (!searchQuery) {
+      dispatch(fetchLatest());
+      dispatch(fetchPopular());
+      setSelectedMovie(popular[0]);
+    } else {
+      dispatch(fetchBySearch(searchQuery));
+      setSelectedMovie(searched[0]);
+    }
+  }, [searchQuery]);
+
+  return {
+    latest,
+    popular,
+    searchQuery,
+    handleChange,
+    handleSubmit,
+    searched,
+    selectedMovie,
+    setSelectedMovie,
+  };
 }
 
 export default useHomePage;
