@@ -21,3 +21,8 @@
   border: none;
   width: 14rem;
 }
+.search button {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}

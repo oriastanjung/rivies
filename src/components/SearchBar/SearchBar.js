@@ -3,8 +3,9 @@ import iconSearch from "../../assets/search-icon.png";
 import styles from "./SearchBar.module.css";
 function SearchBar(props) {
   return (
-    <div
+    <form
       className={`${styles.search} d-flex justify-content-around align-items-center gap-2`}
+      onSubmit={props.onSubmit}
     >
       <input
         type={props.type}
@@ -12,14 +13,12 @@ function SearchBar(props) {
         id={props.id}
         placeholder={props.placeholder}
         value={props.value}
+        onChange={props.onChange}
       />
-      <img
-        src={iconSearch}
-        alt=""
-        className={styles.icon}
-        onClick={props.onClick}
-      />
-    </div>
+      <button type="submit">
+        <img src={iconSearch} alt="" className={styles.icon} />
+      </button>
+    </form>
   );
 }
 
