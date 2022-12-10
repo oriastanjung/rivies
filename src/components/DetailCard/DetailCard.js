@@ -21,7 +21,9 @@ function DetailCard(props) {
             posuere tempus. Nulla tincidunt ullamcorper nulla. Mauris accumsan
             et ligula eget pellentesque
           </p>
-          <button className={`${styles.btn}`}>Play</button>
+          <button className={`${styles.btn}`} onClick={props.onClick}>
+            Play
+          </button>
         </div>
       </div>
     </div>

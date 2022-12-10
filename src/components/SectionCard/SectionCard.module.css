@@ -1,0 +1,32 @@
+.listCard {
+  /* overflow-x: scroll; */
+  overflow: scroll;
+  display: flex;
+  /* flex-wrap: wrap; */
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  height: 350px;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 2rem;
+  /* width: 1200px; */
+  /* background-color: red; */
+  /* overflow-y: hidden; */
+  /* min-width: 1000px; */
+  white-space: nowrap;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+.listCard::-webkit-scrollbar {
+  /* display: none; */
+}
+
+.listCard::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+  background: gray;
+}
+.listCard::-webkit-scrollbar-thumb:horizontal {
+  background: #46c2cb;
+  border-radius: 10px;
+}
