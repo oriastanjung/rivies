@@ -79,7 +79,7 @@ function DetailCard(props) {
   };
   return (
     <header className="container mt-2">
-      {console.log("selected movie >> ", props.movie)}
+      {/* {console.log("selected movie >> ", props.movie)} */}
       {props.movie.videos && props.play === true && renderTrailer()}
 
       {!props.play && (

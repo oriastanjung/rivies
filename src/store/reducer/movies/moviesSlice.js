@@ -8,7 +8,7 @@ const initialState = {
   searched: "",
   isLoading: false,
 };
-const thisDay = new Date();
+// const thisDay = new Date();
 const API_URL = `https://api.themoviedb.org/3`;
 const urlLatestMovies = `/discover/movie?&sort_by=popularity.desc&page=2&api_key=${apiKey}`;
 
@@ -18,7 +18,7 @@ const urlSearchMovies = `/search/movie/?api_key=${apiKey}`;
 export const fetchLatest = createAsyncThunk("/movies/fetchLatest", async () => {
   try {
     const data = await axios.get(`${API_URL}${urlLatestMovies}`);
-    console.log("data >>> ", data.data.results);
+    // console.log("data >>> ", data.data.results);
     return data.data.results;
   } catch (error) {
     console.log(error);
@@ -46,7 +46,7 @@ export const fetchBySearch = createAsyncThunk(
       const data = await axios.get(
         `${API_URL}${urlSearchMovies}&query=${query}`
       );
-      console.log("data search >>> ", data.data.results);
+      // console.log("data search >>> ", data.data.results);
       return data.data.results;
     } catch (error) {
       console.log(error);

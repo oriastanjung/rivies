@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { apiKey } from "../../const/apiKey";
 import {
@@ -9,14 +9,14 @@ import {
 } from "../../store/reducer/movies/moviesSlice";
 function useHomePage() {
   const dispatch = useDispatch();
-  const movies = useSelector((state) => state.movies);
+
   const { latest, popular, searched, isLoading } = useSelector(
     (state) => state.movies
   );
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [play, setPlay] = useState(false);
-  const [itemAwal, setItemAwal] = useState({});
+
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };

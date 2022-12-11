@@ -15,9 +15,9 @@ function HomePage() {
     handleSubmit,
     searched,
     selectedMovie,
-    setSelectedMovie,
+    // setSelectedMovie,
     selectMovie,
-    isLoading,
+    // isLoading,
     play,
     handleSetPlay,
   } = useHomePage();
@@ -49,6 +49,7 @@ function HomePage() {
             popular.map((item) => {
               return (
                 <Card
+                  key={item.id}
                   title={item.title}
                   movie={item}
                   img={item.poster_path}
@@ -68,6 +69,7 @@ function HomePage() {
                   title={item.title}
                   img={item.poster_path}
                   movie={item}
+                  key={item.id}
                   onClick={selectMovie}
                 />
               );
@@ -85,6 +87,7 @@ function HomePage() {
                   title={item.title}
                   movie={item}
                   img={item.poster_path}
+                  key={item.id}
                   onClick={selectMovie}
                 />
               );
