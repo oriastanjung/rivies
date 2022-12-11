@@ -6,6 +6,7 @@ const initialState = {
   latest: [],
   popular: [],
   searched: "",
+  isLoading: false,
 };
 const thisDay = new Date();
 const API_URL = `https://api.themoviedb.org/3`;
@@ -63,10 +64,14 @@ const moviesSlice = createSlice({
       state.latest = action.payload;
       state.searched = initialState.searched;
     });
+    builder.addCase(fetchPopular.pending, (state) => {
+      state.isLoading = true;
+    });
     builder.addCase(fetchPopular.fulfilled, (state, action) => {
       //   console.log("data >> ", action.payload);
       state.popular = action.payload;
       state.searched = initialState.searched;
+      state.isLoading = initialState.isLoading;
     });
     builder.addCase(fetchBySearch.fulfilled, (state, action) => {
       //   console.log("data >> ", action.payload);

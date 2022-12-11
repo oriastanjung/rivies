@@ -9,11 +9,14 @@ import {
 } from "../../store/reducer/movies/moviesSlice";
 function useHomePage() {
   const dispatch = useDispatch();
-  const { latest, popular, searched } = useSelector((state) => state.movies);
+  const movies = useSelector((state) => state.movies);
+  const { latest, popular, searched, isLoading } = useSelector(
+    (state) => state.movies
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [play, setPlay] = useState(false);
-
+  const [itemAwal, setItemAwal] = useState({});
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -45,7 +48,10 @@ function useHomePage() {
   const handleSetPlay = () => {
     setPlay(!play);
   };
-
+  useEffect(() => {
+    dispatch(fetchLatest());
+    dispatch(fetchPopular());
+  }, []);
   useEffect(() => {
     if (!searchQuery) {
       dispatch(fetchLatest());
@@ -55,7 +61,7 @@ function useHomePage() {
     } else {
       dispatch(fetchBySearch(searchQuery));
       setSelectedMovie(searched[0]);
-      selectMovie(searched[0].id);
+      // selectMovie(searched[0].id);
     }
   }, [searchQuery]);
 
@@ -71,6 +77,7 @@ function useHomePage() {
     selectMovie,
     play,
     handleSetPlay,
+    isLoading,
   };
 }
 

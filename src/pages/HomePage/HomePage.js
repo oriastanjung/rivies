@@ -17,6 +17,7 @@ function HomePage() {
     selectedMovie,
     setSelectedMovie,
     selectMovie,
+    isLoading,
     play,
     handleSetPlay,
   } = useHomePage();
