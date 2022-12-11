@@ -50,12 +50,18 @@ function useHomePage() {
     if (!searchQuery) {
       dispatch(fetchLatest());
       dispatch(fetchPopular());
-      setSelectedMovie(popular[0]);
-      selectMovie(popular[0].id);
+      if (popular[0]) {
+        setSelectedMovie(popular[0]);
+        selectMovie(popular[0].id);
+      }
     } else {
       dispatch(fetchBySearch(searchQuery));
       setSelectedMovie(searched[0]);
       selectMovie(searched[0].id);
+      if (searched[0]) {
+        setSelectedMovie(popular[0]);
+        selectMovie(popular[0].id);
+      }
     }
   }, [searchQuery]);
 
