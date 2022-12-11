@@ -3,7 +3,7 @@ import YouTube from "react-youtube";
 import styles from "./DetailCard.module.css";
 function DetailCard(props) {
   const renderTrailer = () => {
-    const trailer = props.movie.videos.results.find((vid) =>
+    const trailer = props.movie.videos?.results.find((vid) =>
       vid.name.includes("Official Trailer")
     );
     const otherOptionalTrailer = props.movie.videos.results[0];

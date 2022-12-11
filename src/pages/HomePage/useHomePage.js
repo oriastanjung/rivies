@@ -60,7 +60,7 @@ function useHomePage() {
       selectMovie(popular[0].id);
     } else {
       dispatch(fetchBySearch(searchQuery));
-      setSelectedMovie(searched[0]);
+      // setSelectedMovie(searched[0]);
       // selectMovie(searched[0].id);
     }
   }, [searchQuery]);
