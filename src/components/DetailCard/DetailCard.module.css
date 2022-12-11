@@ -52,3 +52,32 @@
   color: white;
   border: 1px solid white;
 }
+
+.youtube-container {
+  width: 100% !important;
+  height: 700px;
+  /* position: absolute; */
+}
+
+@media (max-width: 576px) {
+  .detailCard {
+    height: 350px;
+  }
+  .description p {
+    font-size: 12px !important;
+    height: 50px;
+    width: 100% !important;
+    overflow: scroll;
+  }
+  .description h3 {
+    font-size: 20px;
+  }
+  .youtube-container {
+    height: 350px;
+  }
+  .btn {
+    width: 100px;
+    height: 30px;
+    font-size: 13px;
+  }
+}

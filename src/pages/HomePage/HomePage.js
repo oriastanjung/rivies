@@ -16,6 +16,9 @@ function HomePage() {
     searched,
     selectedMovie,
     setSelectedMovie,
+    selectMovie,
+    play,
+    handleSetPlay,
   } = useHomePage();
   return (
     <div className={`${styles.bg} bg`}>
@@ -26,15 +29,34 @@ function HomePage() {
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      {selectedMovie && console.log("selected >> ", selectedMovie)}
+      {/* {selectedMovie && console.log("selected >> ", selectedMovie)} */}
       {selectedMovie && (
         <DetailCard
           title={selectedMovie.title}
           overview={selectedMovie.overview}
           img={selectedMovie.poster_path}
+          movie={selectedMovie}
+          play={play}
+          onClick={handleSetPlay}
         />
       )}
       {!selectedMovie && <DetailCard />}
+      {!searched && (
+        <SectionCard sectionTitle={"Popular Movies"}>
+          {/* {popular && console.log("popular >>> ", popular)} */}
+          {popular &&
+            popular.map((item) => {
+              return (
+                <Card
+                  title={item.title}
+                  movie={item}
+                  img={item.poster_path}
+                  onClick={selectMovie}
+                />
+              );
+            })}
+        </SectionCard>
+      )}
       {!searched && (
         <SectionCard sectionTitle={"Latest Movies"}>
           {/* {latest && console.log("latest >> ", latest)} */}
@@ -44,38 +66,25 @@ function HomePage() {
                 <Card
                   title={item.title}
                   img={item.poster_path}
-                  // movie={item}
-                  onClick={() => setSelectedMovie(item)}
+                  movie={item}
+                  onClick={selectMovie}
                 />
               );
             })}
         </SectionCard>
       )}
-      {!searched && (
-        <SectionCard sectionTitle={"Popular Movies"}>
-          {/* {popular && console.log("popular >>> ", popular)} */}
-          {popular &&
-            popular.map((item) => {
-              return (
-                <Card
-                  title={item.title}
-                  img={item.poster_path}
-                  onClick={() => setSelectedMovie(item)}
-                />
-              );
-            })}
-        </SectionCard>
-      )}
+
       {searched && (
         <SectionCard sectionTitle={"Searched Movies"}>
-          {searched && console.log("searched >>> ", searched)}
+          {/* {searched && console.log("searched >>> ", searched)} */}
           {searched &&
             searched.map((item) => {
               return (
                 <Card
                   title={item.title}
+                  movie={item}
                   img={item.poster_path}
-                  onClick={() => setSelectedMovie(item)}
+                  onClick={selectMovie}
                 />
               );
             })}

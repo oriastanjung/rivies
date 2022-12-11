@@ -1,5 +1,7 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { apiKey } from "../../const/apiKey";
 import {
   fetchLatest,
   fetchPopular,
@@ -10,6 +12,7 @@ function useHomePage() {
   const { latest, popular, searched } = useSelector((state) => state.movies);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
+  const [play, setPlay] = useState(false);
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -20,14 +23,39 @@ function useHomePage() {
     console.log("search >> ", searchQuery);
     dispatch(fetchBySearch(searchQuery));
   };
+
+  const fetchMovie = async (id) => {
+    try {
+      const { data } = await axios.get(
+        `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&append_to_response=videos`
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const selectMovie = async (id) => {
+    const movieSelected = await fetchMovie(id);
+    // console.log("movie selected >> ", movieSelected);
+    setPlay(false);
+    setSelectedMovie(movieSelected);
+  };
+
+  const handleSetPlay = () => {
+    setPlay(!play);
+  };
+
   useEffect(() => {
     if (!searchQuery) {
       dispatch(fetchLatest());
       dispatch(fetchPopular());
       setSelectedMovie(popular[0]);
+      selectMovie(popular[0].id);
     } else {
       dispatch(fetchBySearch(searchQuery));
       setSelectedMovie(searched[0]);
+      selectMovie(searched[0].id);
     }
   }, [searchQuery]);
 
@@ -40,6 +68,9 @@ function useHomePage() {
     searched,
     selectedMovie,
     setSelectedMovie,
+    selectMovie,
+    play,
+    handleSetPlay,
   };
 }
 

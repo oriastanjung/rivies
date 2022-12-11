@@ -1,0 +1,37 @@
+.menu {
+  display: none;
+}
+@media (max-width: 576px) {
+  .nav {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .navcontainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 150%;
+  }
+  .menu {
+    display: flex;
+    align-self: flex-end;
+  }
+  .right {
+    flex-direction: column;
+    gap: 1rem !important;
+    position: absolute;
+    left: -200%;
+    top: -130px;
+    width: 100%;
+    z-index: 9999;
+    transition: all 0.6s ease-in-out;
+  }
+  .show {
+    left: 0;
+    padding-top: 200px;
+    background-color: #1a1a1a;
+
+    height: 200vh;
+  }
+}
