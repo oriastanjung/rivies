@@ -16,7 +16,7 @@ function useHomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMovie, setSelectedMovie] = useState({});
   const [play, setPlay] = useState(false);
-
+  const { username } = useSelector((state) => state.login);
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
   };
@@ -59,7 +59,7 @@ function useHomePage() {
       setSelectedMovie(popular[0]);
       selectMovie(popular[0].id);
     } else {
-      dispatch(fetchBySearch(searchQuery));
+      // dispatch(fetchBySearch(searchQuery));
       // setSelectedMovie(searched[0]);
       // selectMovie(searched[0].id);
     }
@@ -78,6 +78,7 @@ function useHomePage() {
     play,
     handleSetPlay,
     isLoading,
+    username,
   };
 }
 

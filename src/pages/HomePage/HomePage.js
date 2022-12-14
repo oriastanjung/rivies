@@ -20,12 +20,13 @@ function HomePage() {
     // isLoading,
     play,
     handleSetPlay,
+    username,
   } = useHomePage();
   return (
     <div className={`${styles.bg} bg`}>
       <NavBar
         placeholder={`Search your movies here`}
-        username={`User Rivies`}
+        username={username}
         search={searchQuery}
         onChange={handleChange}
         onSubmit={handleSubmit}
